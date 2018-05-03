@@ -1,0 +1,108 @@
+logging:
+  file: myDemo.log
+  level:
+    .: error
+    org.springframework: ERROR
+    com.example.springAppDemo: DEBUG
+
+spring:
+  profiles:
+    active: "medmysql"
+  main:
+    banner-mode: "console"
+  liquibase:
+    changelog: classpath:liquibase/changeLog.xml
+
+server:
+  port: 8088
+
+management:
+  endpoints:
+    web:
+      base-path: /manage    # rename actuator
+      exposure:
+        include: "*"
+    health:
+      show-details: always
+  info:
+    git:
+      mode: full
+
+# for actuator/info
+info:
+  app:
+    profile: standalone
+    encoding: UTF-8
+    java:
+       source: 10 tror vi
+       target: 10 tror jeg
+
+---
+
+spring:
+  profiles: medmysql
+
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: none
+      id:
+        new_generator_mappings: false
+
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/demo?useSSL=false
+    username: root
+    password: myp
+
+info:
+  app:
+     profile: Mysqldb
+
+
+
+---
+
+spring:
+  profiles: medh2
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+    hibernate:
+      ddl-auto: none
+
+  h2:
+    console:
+      enabled: true
+
+
+info:
+  app:
+     profile: H2
+
+---
+
+spring:
+  profiles: medhsql
+
+  datasource:
+    platform: hsqldb
+    url: jdbc:hsqldb:mem:testdb2
+    username: SA
+    password: ''
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+
+info:
+  app:
+     profile: HSQL

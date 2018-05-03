@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="0001" author="bård">
+        <comment>Create databaser</comment>
+        <sqlFile dbms="hsqldb" encoding="utf8" path="liquibase/hsqldb.init.sql" splitStatements="true"/>
+        <sqlFile dbms="mysql" encoding="utf8" path="liquibase/mysql.init.sql" splitStatements="true"/>
+    </changeSet>
+
+    <changeSet id="0002" author="bård">
+        <comment>Set nullable</comment>
+        <sqlFile dbms="mysql" encoding="utf8" path="liquibase/mysql.update1.sql" splitStatements="true"/>
+    </changeSet>
+
+    <changeSet id="0003" author="bård">
+        <!-- set 3 komment -->
+        <sqlFile dbms="mysql" encoding="utf8"
+                 path="liquibase/mysql.update2.sql" splitStatements="true"/>
+    </changeSet>
+
+    <changeSet id="0004" author="bård">
+        <comment>Kortere navn</comment>
+        <sqlFile dbms="mysql" encoding="utf8"
+                 path="liquibase/mysql.update3.sql" splitStatements="true"/>
+    </changeSet>
+
+    <changeSet id="0005" author="bård">
+        <comment>Lag til status</comment>
+        <sqlFile dbms="mysql" encoding="utf8"
+                 path="liquibase/mysql.update4.sql" splitStatements="true"/>
+    </changeSet>
+
+</databaseChangeLog>
